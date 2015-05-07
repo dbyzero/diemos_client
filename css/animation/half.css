@@ -1,0 +1,192 @@
+.half-walking-left {
+  -webkit-animation: half-walking-left 0.4s steps(4) infinite;
+  -o-animation: half-walking-left 0.4s steps(4) infinite;
+  -moz-animation: half-walking-left 0.4s steps(4) infinite;
+  animation: half-walking-left 0.4s steps(4) infinite;
+  background: url(../../asset/spritesheet/skin_half.png) 0 0 no-repeat; 
+  height: 49px;
+  width: 30px;
+}
+
+.half-walking-right {
+  -webkit-animation: half-walking-right 0.4s steps(4) infinite;
+  -o-animation: half-walking-right 0.4s steps(4) infinite;
+  -moz-animation: half-walking-right 0.4s steps(4) infinite;
+  animation: half-walking-right 0.4s steps(4) infinite;
+  background: url(../../asset/spritesheet/skin_half.png) 0 0 no-repeat; 
+  height: 49px;
+  width: 30px;
+}
+
+.half-standing-left {
+  -webkit-animation: half-standing-left 0.4s steps(4) infinite;
+  -o-animation: half-standing-left 0.4s steps(4) infinite;
+  -moz-animation: half-standing-left 0.4s steps(4) infinite;
+  animation: half-standing-left 0.4s steps(4) infinite;
+  background: url(../../asset/spritesheet/skin_half.png) 0 0 no-repeat; 
+  height: 49px;
+  width: 30px;
+}
+
+.half-standing-right {
+  -webkit-animation: half-standing-right 0.4s steps(4) infinite;
+  -o-animation: half-standing-right 0.4s steps(4) infinite;
+  -moz-animation: half-standing-right 0.4s steps(4) infinite;
+  animation: half-standing-right 0.4s steps(4) infinite;
+  background: url(../../asset/spritesheet/skin_half.png) 0 0 no-repeat; 
+  height: 49px;
+  width: 30px;
+}
+
+.half-flying-left {
+  -webkit-animation: half-flying-left 0.2s steps(2) infinite;
+  -o-animation: half-flying-left 0.2s steps(2) infinite;
+  -moz-animation: half-flying-left 0.2s steps(2) infinite;
+  animation: half-flying-left 0.2s steps(2) infinite;
+  background: url(../../asset/spritesheet/skin_half.png) 0 0 no-repeat; 
+  height: 49px;
+  width: 30px;
+}
+
+.half-flying-right {
+  -webkit-animation: half-flying-right 0.2s steps(2) infinite;
+  -o-animation: half-flying-right 0.2s steps(2) infinite;
+  -moz-animation: half-flying-right 0.2s steps(2) infinite;
+  animation: half-flying-right 0.2s steps(2) infinite;
+  background: url(../../asset/spritesheet/skin_half.png) 0 0 no-repeat; 
+  height: 49px;
+  width: 30px;
+}
+
+@-webkit-keyframes half-walking-right
+{  
+  0% {background-position: 0 0px; } 
+  100% {background-position: -120px 0px; }
+} 
+@-o-keyframes half-walking-right
+{  
+  0% {background-position: 0 0px; } 
+  100% {background-position: -120px 0px; }
+}
+@-moz-keyframes half-walking-right
+{  
+  0% {background-position: 0 0px; } 
+  100% {background-position: -120px 0px; }
+}
+@keyframes half-walking-right
+{  
+  0% {background-position: 0 0px; } 
+  100% {background-position: -120px 0px; }
+}
+
+
+
+@-webkit-keyframes half-walking-left
+{  
+  0% {background-position: 0 -49px; } 
+  100% {background-position: -120px -49px; }
+}
+@-o-keyframes half-walking-left
+{  
+  0% {background-position: 0 -49px; } 
+  100% {background-position: -120px -49px; }
+}
+@-moz-keyframes half-walking-left
+{  
+  0% {background-position: 0 -49px; } 
+  100% {background-position: -120px -49px; }
+}
+@keyframes half-walking-left
+{  
+  0% {background-position: 0 -49px; } 
+  100% {background-position: -120px -49px; }
+}
+
+
+
+@-webkit-keyframes half-standing-right
+{  
+  0% {background-position: 0 -98px; } 
+  100% {background-position: -120px -98px; }
+}
+@-o-keyframes half-standing-right
+{  
+  0% {background-position: 0 -98px; } 
+  100% {background-position: -120px -98px; }
+}
+@-moz-keyframes half-standing-right
+{  
+  0% {background-position: 0 -98px; } 
+  100% {background-position: -120px -98px; }
+}
+@keyframes half-standing-right
+{  
+  0% {background-position: 0 -98px; } 
+  100% {background-position: -120px -98px; }
+}
+
+
+@-webkit-keyframes half-standing-left
+{  
+  0% {background-position: 0 -147px; } 
+  100% {background-position: -120px -147px; }
+}
+@-o-keyframes half-standing-left
+{  
+  0% {background-position: 0 -147px; } 
+  100% {background-position: -120px -147px; }
+}
+@-moz-keyframes half-standing-left
+{  
+  0% {background-position: 0 -147px; } 
+  100% {background-position: -120px -147px; }
+}
+@keyframes half-standing-left
+{  
+  0% {background-position: 0 -147px; } 
+  100% {background-position: -120px -147px; }
+}
+
+
+@-webkit-keyframes half-flying-right
+{  
+  0% {background-position: 0 -196px; } 
+  100% {background-position: -60px -196px; }
+}
+@-o-keyframes half-flying-right
+{  
+  0% {background-position: 0 -196px; } 
+  100% {background-position: -60px -196px; }
+}
+@-moz-keyframes half-flying-right
+{  
+  0% {background-position: 0 -196px; } 
+  100% {background-position: -60px -196px; }
+}
+@keyframes half-flying-right
+{  
+  0% {background-position: 0 -196px; } 
+  100% {background-position: -60px -196px; }
+}
+
+
+@-webkit-keyframes half-flying-left
+{  
+  0% {background-position: -60px -196px; } 
+  100% {background-position: -120px -196px; }
+}
+@-o-keyframes half-flying-left
+{  
+  0% {background-position: -60px -196px; } 
+  100% {background-position: -120px -196px; }
+}
+@-moz-keyframes half-flying-left
+{  
+  0% {background-position: -60px -196px; } 
+  100% {background-position: -120px -196px; }
+}
+@keyframes half-flying-left
+{  
+  0% {background-position: -60px -196px; } 
+  100% {background-position: -120px -196px; }
+}

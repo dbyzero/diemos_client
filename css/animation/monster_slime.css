@@ -1,0 +1,16 @@
+.slimeAnimationWalkingLeft {
+	-webkit-animation: walk-cycle 0.7s steps(8) infinite;
+	transform: translateZ(0); /* offers a bit of a performance boost by pushing some of this processing to the GPU in Safari*/
+	background-position-y: 0px;
+}
+
+.slimeAnimationWalkingRight, .slimeAnimationFlyingRight, .slimeAnimationStandingRight, .slimeAnimationShootingRight {
+	-webkit-animation: walk-cycle 0.7s steps(8) infinite;
+	transform: translateZ(0); /* offers a bit of a performance boost by pushing some of this processing to the GPU in Safari*/
+	background-position-y: -50px;
+}
+
+@-webkit-keyframes walk-cycle {
+	0% { background-position-x: 0; }
+	100% { background-position-x: -400px; }
+}

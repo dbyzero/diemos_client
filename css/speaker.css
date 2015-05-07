@@ -1,0 +1,19 @@
+div.speaker {
+	width:128px;
+	height:88px;
+	display:none;
+	z-index:20;
+	position:absolute;
+	background-image:url(deimos.png);
+	background-position:0px 0px;
+}
+
+div.speaker textarea {
+	width: 116px;
+	height: 55px;
+	margin-top: 5px;
+	margin-left: 4px;
+	outline:none;
+	resize:none;
+	border:0;
+}

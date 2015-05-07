@@ -1,0 +1,245 @@
+.avatarAnimationStandingLeft {
+  -webkit-animation: avatar-webcraft-standLeft 0.5s steps(8) infinite;
+  -o-animation: avatar-webcraft-standLeft 0.5s steps(8) infinite;
+  -moz-animation: avatar-webcraft-standLeft 0.5s steps(8) infinite;
+  animation: avatar-webcraft-standLeft 0.5s steps(8) infinite;
+}
+
+.avatarAnimationStandingRight {
+  -webkit-animation: avatar-webcraft-standRight 0.5s steps(8) infinite;
+  -o-animation: avatar-webcraft-standRight 0.5s steps(8) infinite;
+  -moz-animation: avatar-webcraft-standRight 0.5s steps(8) infinite;
+  animation: avatar-webcraft-standRight 0.5s steps(8) infinite;
+}
+.avatarAnimationWalkingLeft {
+  -webkit-animation: avatar-webcraft-walkLeft 0.5s steps(8) infinite;
+  -o-animation: avatar-webcraft-walkLeft 0.5s steps(8) infinite;
+  -moz-animation: avatar-webcraft-walkLeft 0.5s steps(8) infinite;
+  animation: avatar-webcraft-walkLeft 0.5s steps(8) infinite;
+}
+.avatarAnimationWalkingRight {
+  -webkit-animation: avatar-webcraft-walkRight 0.5s steps(8) infinite;
+  -o-animation: avatar-webcraft-walkRight 0.5s steps(8) infinite;
+  -moz-animation: avatar-webcraft-walkRight 0.5s steps(8) infinite;
+  animation: avatar-webcraft-walkRight 0.5s steps(8) infinite;
+}
+.avatarAnimationFlyingLeft {
+  -webkit-animation: avatar-webcraft-flyLeft 0.5s steps(8) infinite;
+  -o-animation: avatar-webcraft-flyLeft 0.5s steps(8) infinite;
+  -moz-animation: avatar-webcraft-flyLeft 0.5s steps(8) infinite;
+  animation: avatar-webcraft-flyLeft 0.5s steps(8) infinite;
+}
+.avatarAnimationFlyingRight {
+  -webkit-animation: avatar-webcraft-flyRight 0.5s steps(8) infinite;
+  -o-animation: avatar-webcraft-flyRight 0.5s steps(8) infinite;
+  -moz-animation: avatar-webcraft-flyRight 0.5s steps(8) infinite;
+  animation: avatar-webcraft-flyRight 0.5s steps(8) infinite;
+}
+.avatarAnimationShootingLeft {
+  -webkit-animation: avatar-webcraft-shootRight 0.2s steps(8) infinite;
+  -o-animation: avatar-webcraft-shootRight 0.2s steps(8) infinite;
+  -moz-animation: avatar-webcraft-shootRight 0.2s steps(8) infinite;
+  animation: avatar-webcraft-shootRight 0.2s steps(8) infinite;
+}
+.avatarAnimationShootingRight {
+  -webkit-animation: avatar-webcraft-shootLeft 0.2s steps(8) infinite;
+  -o-animation: avatar-webcraft-shootLeft 0.2s steps(8) infinite;
+  -moz-animation: avatar-webcraft-shootLeft 0.2s steps(8) infinite;
+  animation: avatar-webcraft-shootLeft 0.2s steps(8) infinite;
+}
+
+.avatarAnimationFront {
+  -webkit-animation: avatar-webcraft-standing 0.5s steps(8) infinite;
+  -o-animation: avatar-webcraft-standing 0.5s steps(8) infinite;
+  -moz-animation: avatar-webcraft-standing 0.5s steps(8) infinite;
+  animation: avatar-webcraft-standing 0.5s steps(8) infinite;
+}
+
+@-webkit-keyframes avatar-webcraft-standRight
+{  
+  0% {background-position: 0 -0px; } 
+  100% {background-position: -800px -0px; }
+}
+@-o-keyframes avatar-webcraft-standRight
+{  
+  0% {background-position: 0 -0px; } 
+  100% {background-position: -800px -0px; }
+}
+@-moz-keyframes avatar-webcraft-standRight
+{  
+  0% {background-position: 0 -0px; } 
+  100% {background-position: -800px -0px; }
+}
+@keyframes avatar-webcraft-standRight
+{  
+  0% {background-position: 0 -0px; } 
+  100% {background-position: -800px -0px; }
+}
+
+@-webkit-keyframes avatar-webcraft-standLeft
+{  
+  0% {background-position: 0 -100px; } 
+  100% {background-position: -800px -100px; }
+}
+@-o-keyframes avatar-webcraft-standLeft
+{  
+  0% {background-position: 0 -100px; } 
+  100% {background-position: -800px -100px; }
+}
+@-moz-keyframes avatar-webcraft-standLeft
+{  
+  0% {background-position: 0 -100px; } 
+  100% {background-position: -800px -100px; }
+}
+@keyframes avatar-webcraft-standLeft
+{  
+  0% {background-position: 0 -100px; } 
+  100% {background-position: -800px -100px; }
+}
+
+@-webkit-keyframes avatar-webcraft-walkRight
+{  
+  0% {background-position: 0 -200px; } 
+  100% {background-position: -800px -200px; }
+}
+@-o-keyframes avatar-webcraft-walkRight
+{  
+  0% {background-position: 0 -200px; } 
+  100% {background-position: -800px -200px; }
+}
+@-moz-keyframes avatar-webcraft-walkRight
+{  
+  0% {background-position: 0 -200px; } 
+  100% {background-position: -800px -200px; }
+}
+@keyframes avatar-webcraft-walkRight
+{  
+  0% {background-position: 0 -200px; } 
+  100% {background-position: -800px -200px; }
+}
+
+@-webkit-keyframes avatar-webcraft-walkLeft
+{  
+  0% {background-position: 0 -300px; } 
+  100% {background-position: -800px -300px; }
+}
+@-o-keyframes avatar-webcraft-walkLeft
+{  
+  0% {background-position: 0 -300px; } 
+  100% {background-position: -800px -300px; }
+}
+@-moz-keyframes avatar-webcraft-walkLeft
+{  
+  0% {background-position: 0 -300px; } 
+  100% {background-position: -800px -300px; }
+}
+@keyframes avatar-webcraft-walkLeft
+{  
+  0% {background-position: 0 -300px; } 
+  100% {background-position: -800px -300px; }
+}
+
+@-webkit-keyframes avatar-webcraft-flyRight
+{  
+  0% {background-position: 0 -500px; } 
+  100% {background-position: -800px -500px; }
+}
+@-o-keyframes avatar-webcraft-flyRight
+{  
+  0% {background-position: 0 -500px; } 
+  100% {background-position: -800px -500px; }
+}
+@-moz-keyframes avatar-webcraft-flyRight
+{  
+  0% {background-position: 0 -500px; } 
+  100% {background-position: -800px -500px; }
+}
+@keyframes avatar-webcraft-flyRight
+{  
+  0% {background-position: 0 -500px; } 
+  100% {background-position: -800px -500px; }
+}
+
+@-webkit-keyframes avatar-webcraft-flyLeft
+{  
+  0% {background-position: 0 -400px; } 
+  100% {background-position: -800px -400px; }
+}
+@-o-keyframes avatar-webcraft-flyLeft
+{  
+  0% {background-position: 0 -400px; } 
+  100% {background-position: -800px -400px; }
+}
+@-moz-keyframes avatar-webcraft-flyLeft
+{  
+  0% {background-position: 0 -400px; } 
+  100% {background-position: -800px -400px; }
+}
+@keyframes avatar-webcraft-flyLeft
+{  
+  0% {background-position: 0 -400px; } 
+  100% {background-position: -800px -400px; }
+}
+
+@-webkit-keyframes avatar-webcraft-shootRight
+{  
+  0% {background-position: 0 -600px; } 
+  100% {background-position: -800px -600px; }
+}
+@-o-keyframes avatar-webcraft-shootRight
+{  
+  0% {background-position: 0 -600px; } 
+  100% {background-position: -800px -600px; }
+}
+@-moz-keyframes avatar-webcraft-shootRight
+{  
+  0% {background-position: 0 -600px; } 
+  100% {background-position: -800px -600px; }
+}
+@keyframes avatar-webcraft-shootRight
+{  
+  0% {background-position: 0 -600px; } 
+  100% {background-position: -800px -600px; }
+}
+
+@-webkit-keyframes avatar-webcraft-shootLeft
+{  
+  0% {background-position: 0 -700px; } 
+  100% {background-position: -800px -700px; }
+}
+@-o-keyframes avatar-webcraft-shootLeft
+{  
+  0% {background-position: 0 -700px; } 
+  100% {background-position: -800px -700px; }
+}
+@-moz-keyframes avatar-webcraft-shootLeft
+{  
+  0% {background-position: 0 -700px; } 
+  100% {background-position: -800px -700px; }
+}
+@keyframes avatar-webcraft-shootLeft
+{  
+  0% {background-position: 0 -700px; } 
+  100% {background-position: -800px -700px; }
+}
+
+@-webkit-keyframes avatar-webcraft-standing
+{  
+  0% {background-position: 0 -800px; } 
+  100% {background-position: -800px -800px; }
+}
+@-o-keyframes avatar-webcraft-standing
+{  
+  0% {background-position: 0 -800px; } 
+  100% {background-position: -800px -800px; }
+}
+@-moz-keyframes avatar-webcraft-standing
+{  
+  0% {background-position: 0 -800px; } 
+  100% {background-position: -800px -800px; }
+}
+@keyframes avatar-webcraft-standing
+{  
+  0% {background-position: 0 -800px; } 
+  100% {background-position: -800px -800px; }
+}

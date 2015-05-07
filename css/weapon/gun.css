@@ -1,0 +1,8 @@
+.weapon-test_gun-right {
+	background-image:url(../../asset/spritesheet/gun.png);
+	background-position:0px 0px;
+}
+.weapon-test_gun-left {
+	background-image:url(../../asset/spritesheet/gun.png);
+	background-position:-31px 0px;
+}
