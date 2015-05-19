@@ -3,7 +3,7 @@ var uglify = require('gulp-uglify');
 var concatCss = require('gulp-concat-css');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
-var watch = require('gulp-watch');
+var watchify = require('watchify');
 
 gulp.task('build:css', function() {
     return gulp.src('css/**/*.css')

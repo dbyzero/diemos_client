@@ -1,4 +1,4 @@
-/********
+/**
  *
  * org.dbyzero.deimos.Engine Object
  *
@@ -36,12 +36,11 @@
 			deimos.Engine.itemTemplates = {}; 
 			deimos.Engine.pastFPS = [];
 
-			if(!deimos.Engine.loadConfig()) return false;
-			_t = deimos.Engine._t = deimos.network.Message.CODE[deimos.Engine.customConfiguration.messageLevel];
+			_t = deimos.Engine._t = deimos.network.Message.CODE[deimos.Config.messageLevel];
 
 			//set runlevel
 			deimos.Engine.mode = ( 
-				deimos.Engine.customConfiguration.mode == "debug" ? 
+				deimos.Config.mode == "debug" ? 
 				deimos.Engine.Mode.DEBUG 
 				: deimos.Engine.Mode.PROD 
 			) ;
@@ -55,8 +54,8 @@
 
 
 			//setting websocket server
-			deimos.Engine.wsUrl = deimos.Engine.customConfiguration.deimosServer.url ;
-			deimos.Engine.wsPort = deimos.Engine.customConfiguration.deimosServer.port ;
+			deimos.Engine.wsUrl = deimos.Config.remoteServer.deimosServer.url ;
+			deimos.Engine.wsPort = deimos.Config.remoteServer.deimosServer.port ;
 			deimos.Engine.wsClient = new deimos.network.WebsocketClient(deimos.Engine.wsUrl,deimos.Engine.wsPort,deimos.Engine.mode);
 
 			//making scene
@@ -80,16 +79,6 @@
 		},
 
 		keyHandlerDown: function(e){
-		},
-
-		loadConfig:function() {
-			var currentUrl = window.location.href;
-			if(deimos.Config.clientConfig[currentUrl] === undefined) {
-				EventManager.fire("org.dbyzero.deimos.console.writeError",{"detail":{"message":"No configuration for this website"}});
-				return false;
-			}
-			deimos.Engine.customConfiguration = deimos.Config.clientConfig[currentUrl];
-			return true
 		},
 
 		/**

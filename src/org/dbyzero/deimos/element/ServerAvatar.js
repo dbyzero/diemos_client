@@ -32,7 +32,7 @@
 	deimos.element.ServerAvatar.prototype.init = function() {
 		ServerAvatar._super.prototype.init.call(this);
 
-		this.domElem.style.backgroundImage = "url("+deimos.Engine.customConfiguration.webcraftURL+"/spritesheet/char/"+this.serverid+"/spritesheet.png)";
+		this.domElem.style.backgroundImage = "url("+deimos.Config.remoteServer.assetURL+"/spritesheet/char/"+this.serverid+"/spritesheet.png)";
 
 		this.initSpeaker(true);
 		this.initName();

@@ -15,39 +15,20 @@ org.dbyzero.deimos = org.dbyzero.deimos || {} ;
 (function(deimos,document,undefined) {
 	deimos.Config = {};
 	deimos.Config.FPS = 60;
+	deimos.Config.mode = "debug",
+	deimos.Config.messageLevel = "verbose",
+	deimos.Config.FPS = 60;
 	deimos.Config.GAME_SPEED = 33;
 	deimos.Config.SQUARE_AUTHORITY = 100*100;
 	deimos.Config.DELTA_SERVER_SYNC = 5000;
 	deimos.Config.showOwnMirror = false;
 
-	deimos.Config.clientConfig = {};
-	deimos.Config.clientConfig['http://webcraft.dbyzero.com/'] = {
-		'messageLevel':'verbose',
-		"deimosServer":{
-			"url":"webcraft.dbyzero.com",
-			"port":"1337"
-		},
-		"deimosServerPort":"1337",
-		"mode":"debug",
-		"webcraftURL":'http://webcraft.dbyzero.com'
-	};
-	deimos.Config.clientConfig['http://localhost:3000/'] = {
-		'messageLevel':'verbose',
+	deimos.Config.remoteServer = {
 		"deimosServer":{
 			"url":"localhost",
-			"port":"1337"
+			"port":"40001"
 		},
-		"mode":"debug",
-		"webcraftURL":'http://localhost:3000'
-	};
-	deimos.Config.clientConfig['http://localhost/deimos_client/'] = {
-		'messageLevel':'verbose',
-		"deimosServer":{
-			"url":"localhost",
-			"port":"1337"
-		},
-		"mode":"debug",
-		"webcraftURL":'http://localhost:3000'
+		"assetURL":'http://localhost:8080'
 	};
 
 

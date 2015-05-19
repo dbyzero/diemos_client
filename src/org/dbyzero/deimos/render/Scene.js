@@ -19,7 +19,6 @@ org.dbyzero = org.dbyzero || {} ;
 
 	deimos.render.Scene = function() {
 		this.items			= {};
-		this.blocks			= {};
 		this.avatars		= {};
 		this.projectiles	= {};
 		this.attackZones	= {};

@@ -42,7 +42,7 @@
 		this.domElem.className = "monster_"+this.skin;
 
 		//set spritesheet
-		this.domElem.style.backgroundImage = "url("+deimos.Engine.customConfiguration.webcraftURL+"/spritesheet/monster/"+this.templateId+"/color/"+this.color+"/spritesheet.png)";
+		this.domElem.style.backgroundImage = "url("+deimos.Config.remoteServer.assetURL+"/spritesheet/monster/"+this.templateId+"/color/"+this.color+"/spritesheet.png)";
 
 		//add speaker
 		this.initSpeaker(false);
