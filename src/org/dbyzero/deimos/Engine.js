@@ -29,12 +29,15 @@
 		running : false,
 		init : function (){
 			//making UI
-			deimos.Engine.ui = new deimos.render.UI() ;
+			deimos.Engine.ui = new deimos.render.UI(serverUrl,serverPort,serverAssetURL) ;
 			deimos.Engine.lastUpdate = null;
 			deimos.Engine.lastSync = null;
 			deimos.Engine.needSync = false;
 			deimos.Engine.itemTemplates = {}; 
 			deimos.Engine.pastFPS = [];
+
+			//stocking asset access
+			deimos.Engine.assetURL = serverAssetURL;
 
 			_t = deimos.Engine._t = deimos.network.Message.CODE[deimos.Config.messageLevel];
 
@@ -54,8 +57,8 @@
 
 
 			//setting websocket server
-			deimos.Engine.wsUrl = deimos.Config.remoteServer.deimosServer.url ;
-			deimos.Engine.wsPort = deimos.Config.remoteServer.deimosServer.port ;
+			deimos.Engine.wsUrl = serverUrl;
+			deimos.Engine.wsPort = serverPort ;
 			deimos.Engine.wsClient = new deimos.network.WebsocketClient(deimos.Engine.wsUrl,deimos.Engine.wsPort,deimos.Engine.mode);
 
 			//making scene

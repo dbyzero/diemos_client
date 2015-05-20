@@ -32,7 +32,7 @@
 
 	deimos.element.Projectile.prototype.init = function() {
 		Projectile._super.prototype.init.call(this);
-		this.domElem.style.backgroundImage = "url("+deimos.Config.remoteServer.assetURL+"/images/spritesheet/"+this.skin+".png)";
+		this.domElem.style.backgroundImage = "url("+deimos.Engine.assetURL+"/images/spritesheet/"+this.skin+".png)";
 		if(this.orientation === 'left'){
 			this.domElem.style.backgroundPositionY = '-'+(this.height)+'px';
 		}

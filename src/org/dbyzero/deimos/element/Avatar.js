@@ -45,7 +45,7 @@
 		Avatar._super.prototype.init.call(this);
 
 		//set spritesheet
-		this.domElem.style.backgroundImage = "url("+deimos.Config.remoteServer.assetURL+"/spritesheet/char/"+this.serverid+"/spritesheet.png)";
+		this.domElem.style.backgroundImage = "url("+deimos.Engine.assetURL+"/spritesheet/char/"+this.serverid+"/spritesheet.png)";
 
 		//add speaker
 		this.initSpeaker(false);

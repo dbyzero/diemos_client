@@ -22,7 +22,7 @@ gulp.task('build:js', function() {
             "src/org/dbyzero/tools/Vector.js",
             "src/org/dbyzero/tools/EventManager.js",
             "src/org/dbyzero/tools/KeyboardController.js",
-            "src/org/dbyzero/deimos/Config/localhost.js", //CHANGER DE CONFIG ICI
+            "src/org/dbyzero/deimos/Config.js",
             "src/org/dbyzero/deimos/Engine.js",
             "src/org/dbyzero/deimos/render/Animation.js",
             "src/org/dbyzero/deimos/render/UI.js",

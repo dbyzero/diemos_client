@@ -39,7 +39,7 @@
 		this.domElem.className = "item_"+this.skin;
 
 		//set spritesheet
-		this.domElem.style.backgroundImage = "url("+deimos.Config.remoteServer.assetURL+"/spritesheet/item/"+this.templateId+"/"+this.color+"/spritesheet.png)";
+		this.domElem.style.backgroundImage = "url("+deimos.Engine.assetURL+"/spritesheet/item/"+this.templateId+"/"+this.color+"/spritesheet.png)";
 		this.domElem.style.backgroundPositionX = "-800px";
 
 		//show main name
