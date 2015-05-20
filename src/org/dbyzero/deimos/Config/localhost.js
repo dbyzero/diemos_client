@@ -26,9 +26,9 @@ org.dbyzero.deimos = org.dbyzero.deimos || {} ;
 	deimos.Config.remoteServer = {
 		"deimosServer":{
 			"url":"localhost",
-			"port":"40001"
+			"port":"1337"
 		},
-		"assetURL":'http://localhost:8080'
+		"assetURL":'http://localhost:1080'
 	};
 
 
