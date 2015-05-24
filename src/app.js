@@ -7,11 +7,14 @@ window.onload = function(){
 	}
 
 	//start game if all is good in configuration
-	serverUrl = "localhost";
-	serverPort = 1337;
-	serverAssetURL = "http://localhost:1080";
+	var config = {
+		serverUrl : "localhost",
+		serverPort : 1337,
+		serverAssetURL : "http://localhost:1082",
+		gameArea : "gamezone"
+	};
 
-	if(org.dbyzero.deimos.Engine.init(serverUrl,serverPort,serverAssetURL) === true)
+	if(org.dbyzero.deimos.Engine.init(config) === true)
 		org.dbyzero.deimos.Engine.start() ;
 
 };

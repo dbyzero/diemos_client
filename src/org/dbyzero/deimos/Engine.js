@@ -27,9 +27,9 @@
 
 	deimos.Engine = {
 		running : false,
-		init : function (){
+		init : function (config){
 			//making UI
-			deimos.Engine.ui = new deimos.render.UI(serverUrl,serverPort,serverAssetURL) ;
+			deimos.Engine.ui = new deimos.render.UI() ;
 			deimos.Engine.lastUpdate = null;
 			deimos.Engine.lastSync = null;
 			deimos.Engine.needSync = false;
@@ -37,7 +37,8 @@
 			deimos.Engine.pastFPS = [];
 
 			//stocking asset access
-			deimos.Engine.assetURL = serverAssetURL;
+			deimos.Engine.assetURL = config.serverAssetURL;
+			deimos.Engine.gameArea = config.gameArea;
 
 			_t = deimos.Engine._t = deimos.network.Message.CODE[deimos.Config.messageLevel];
 
@@ -57,8 +58,8 @@
 
 
 			//setting websocket server
-			deimos.Engine.wsUrl = serverUrl;
-			deimos.Engine.wsPort = serverPort ;
+			deimos.Engine.wsUrl = config.serverUrl;
+			deimos.Engine.wsPort = config.serverPort ;
 			deimos.Engine.wsClient = new deimos.network.WebsocketClient(deimos.Engine.wsUrl,deimos.Engine.wsPort,deimos.Engine.mode);
 
 			//making scene
@@ -116,7 +117,9 @@
 		initGameArea: function(e) {
 			deimos.Engine.zone = new deimos.element.Zone(
 				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_NAME],
-				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_DOM_ID],
+				deimos.Engine.gameArea,
+				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_WIDTH],
+				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_HEIGHT],
 				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_BLOCKS]
 			);
 		},

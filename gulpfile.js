@@ -48,14 +48,15 @@ gulp.task('build:js', function() {
         ])
         .pipe(sourcemaps.init())
         .pipe(concat('deimos.js'))
-        .pipe(uglify({
-            compress:true,
-            mangle:true,
-            preserveComments:false
-        }))
+        // .pipe(uglify({
+        //     compress:true,
+        //     mangle:true,
+        //     preserveComments:false
+        // }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist/'))
-        .pipe(gulp.dest('test/'));
+        .pipe(gulp.dest('test/'))
+        .pipe(gulp.dest('/home/half/repository/puck/client/libs/'));
 });
 
 gulp.task('default', ['build:css','build:js']);

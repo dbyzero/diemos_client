@@ -18,12 +18,17 @@
 	 * @param domId document id of the gamezone, where the action append !
 	 *
 	 * */
-	deimos.element.Zone = function(name, domId, blocks) {
+	deimos.element.Zone = function(name, domId, width, height, blocks) {
 		this.area = document.getElementById(domId) ;
-		this.width = this.area.offsetWidth;
-		this.height = this.area.offsetHeight;
-		this.blocks = blocks ;
+		this.width = width;
+		this.height = height;
 		this.name = name ;
+		this.blocks = [] ;
+		var keys = Object.keys(blocks);
+		for (var i = 0; i < keys.length; i++) {
+			var block = blocks[keys[i]];
+			this.addBlock(block);
+		};
 	}
 
 	deimos.element.Zone.prototype = {
@@ -37,6 +42,15 @@
 			this.addBlock(block) ;
 		},
 		addBlock : function(block) {
+			var domBlock = document.createElement('div');
+			domBlock.style.position = 'absolute';
+			domBlock.style.backgroundColor = 'red';
+			domBlock.style.width = block.width+'px';
+			domBlock.style.height = block.height+'px';
+			domBlock.style.left = block.position.x+'px';
+			domBlock.style.top = block.position.y+'px';
+			domBlock.style.backgroundColor = 'rgb(186, 186, 186)';
+			this.area.appendChild(domBlock);
 			this.blocks.push(block) ;
 		},
 	}
