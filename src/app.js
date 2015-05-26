@@ -9,8 +9,8 @@ window.onload = function(){
 	//start game if all is good in configuration
 	var config = {
 		serverUrl : "localhost",
-		serverPort : 1337,
-		serverAssetURL : "http://localhost:1082",
+		serverPort : 40004,
+		serverAssetURL : "http://localhost:8080",
 		gameArea : "gamezone"
 	};
 
