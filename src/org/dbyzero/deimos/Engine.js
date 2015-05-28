@@ -27,7 +27,9 @@
 
 	deimos.Engine = {
 		running : false,
-		init : function (config){
+		start : function (config){
+			deimos.Engine.running = false;
+
 			//making UI
 			deimos.Engine.ui = new deimos.render.UI() ;
 			deimos.Engine.lastUpdate = null;
@@ -38,9 +40,8 @@
 
 			//stocking asset access
 			deimos.Engine.assetURL = config.serverAssetURL;
-			deimos.Engine.gameArea = config.gameArea;
 
-			_t = deimos.Engine._t = deimos.network.Message.CODE[deimos.Config.messageLevel];
+			deimos.Engine._t = deimos.network.Message.CODE[deimos.Config.messageLevel];
 
 			//set runlevel
 			deimos.Engine.mode = ( 
@@ -66,15 +67,53 @@
 			deimos.Engine.scene = new deimos.render.Scene();
 
 			bindEngineEvent();
-			return true;
-		},
 
-		start: function(){
 			deimos.Engine.wsClient.connect() ;
 		},
 
 		stop: function (){
+			//do nothing if already stopped
+			if(deimos.Engine.running === false) return;
+
+			deimos.Engine.running = false;
+			unbindGameEventKey() ;
 			deimos.Engine.loop.stop() ;
+
+			if(deimos.Engine.avatar)
+				deimos.Engine.avatar.cleanDom();
+
+			if(deimos.Engine.scene)
+				deimos.Engine.scene.destroy();
+
+			if(deimos.Engine.networkManager)
+				deimos.Engine.networkManager.destroy();
+
+			if(deimos.Engine.ui)
+				deimos.Engine.ui.loggout() ;
+
+			if(deimos.Engine.zone)
+				deimos.Engine.zone.destroy() ;
+
+			if(deimos.Engine.wsClient)
+				deimos.Engine.wsClient.close();
+
+			delete deimos.Engine.avatar;
+			delete deimos.Engine.zone;
+			delete deimos.Engine.ui;
+			delete deimos.Engine.pastFPS;
+			delete deimos.Engine.itemTemplates; 
+			delete deimos.Engine.needSync;
+			delete deimos.Engine.lastSync;
+			delete deimos.Engine.lastUpdate;
+			delete deimos.Engine.assetURL;
+			delete deimos.Engine._t;
+			delete deimos.Engine.mode;
+			delete deimos.Engine.networkManager;
+			delete deimos.Engine.wsClient;
+			delete deimos.Engine.scene;
+			delete deimos.Engine.wsPort;
+			delete deimos.Engine.wsUrl;
+			delete deimos.Engine.loop;
 		},
 
 		keyHandlerUp: function(e){
@@ -89,6 +128,7 @@
 		 * MAIN GAME LOOP
 		 */
 		update: function(){
+			if(deimos.Engine.running === false) return;
 
 			//time things
 			if(deimos.Engine.lastUpdate === null)
@@ -115,9 +155,10 @@
 		},
 
 		initGameArea: function(e) {
+			var _t = deimos.Engine._t;
 			deimos.Engine.zone = new deimos.element.Zone(
 				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_NAME],
-				deimos.Engine.gameArea,
+				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_DOM_ID],
 				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_WIDTH],
 				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_HEIGHT],
 				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_BLOCKS]
@@ -125,6 +166,7 @@
 		},
 
 		startGame: function(e) {
+			var _t = deimos.Engine._t;
 			var skin					= e[_t.MESSAGE][_t.MESSAGE_CHAR][_t.MESSAGE_SKIN];
 			var id						= e[_t.MESSAGE][_t.MESSAGE_CHAR][_t.MESSAGE_ELEMENT_ID];
 			var name					= e[_t.MESSAGE][_t.MESSAGE_CHAR][_t.NAME];
@@ -195,11 +237,6 @@
 			deimos.Engine.scene.dataToParse = e[_t.MESSAGE][_t.ACTION_SYNC];
 			deimos.Engine.loop.start(deimos.Engine.update.bind(deimos.Engine));
 		},
-		stopGame : function() {
-			deimos.Engine.running = false;
-			deimos.Engine.loop.stop() ;
-			unbindGameEventKey() ;
-		},
 
 		getItemTemplate : function(itemId, callback) {
 			//if not yet get, we ask for it, else, load the callback
@@ -235,8 +272,8 @@
 		EventManager.register('org.dbyzero.deimos.network.gameStarted',deimos.Engine.startGame);
 		EventManager.register('org.dbyzero.deimos.render.parseScene',deimos.Engine.scene.parseData.bind(deimos.Engine.scene));
 
-		EventManager.register('org.dbyzero.deimos.network.disconnected',deimos.Engine.stopGame);
-		EventManager.register('org.dbyzero.deimos.network.loggout',deimos.Engine.stopGame);
+		EventManager.register('org.dbyzero.deimos.network.disconnected',deimos.Engine.stop);
+		EventManager.register('org.dbyzero.deimos.network.loggout',deimos.Engine.stop);
 
 		EventManager.register('org.dbyzero.deimos.network.logged',deimos.Engine.initGameArea) ;
 	}

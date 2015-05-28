@@ -32,6 +32,11 @@ org.dbyzero.deimos = org.dbyzero.deimos || {} ;
 			EventManager.register('org.dbyzero.deimos.network.sendMessage',this.sendMessage.bind(this)) ;
 			EventManager.register('org.dbyzero.deimos.network.sendSync',this.sendSync.bind(this)) ;
 		},
+		"destroy" : function() {
+			EventManager.unregister('org.dbyzero.deimos.network.receivedMessage') ;
+			EventManager.unregister('org.dbyzero.deimos.network.sendMessage') ;
+			EventManager.unregister('org.dbyzero.deimos.network.sendSync') ;
+		},
 		"receivedMessage" : function(e) {
 			var _t = deimos.Engine._t;
 			switch(e[_t.ACTION]) {
@@ -128,6 +133,7 @@ org.dbyzero.deimos = org.dbyzero.deimos || {} ;
 
 			//putting it at the end of the queue
 			setTimeout(function(){ 
+				if(deimos.Engine.wsClient === undefined) return;
 				deimos.Engine.wsClient.send(data)
 			}, 0);
 		},

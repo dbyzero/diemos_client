@@ -116,14 +116,7 @@
 			}
 		};
 
-		EventManager.register('org.dbyzero.deimos.network.logged',this.logged.bind(this)) ;
-		EventManager.register('org.dbyzero.deimos.network.connected',this.connected.bind(this)) ;
-		EventManager.register('org.dbyzero.deimos.network.disconnected',this.disconnected.bind(this)) ;
-		EventManager.register('org.dbyzero.deimos.network.loggout',this.loggout.bind(this)) ;
-
-		EventManager.register('org.dbyzero.deimos.console.write',this.addmessage.bind(this)) ;
-		EventManager.register('org.dbyzero.deimos.console.writeError',this.addmessageError.bind(this)) ;
-		EventManager.register('org.dbyzero.deimos.network.avatar_selected',this.avatarSelected) ;
+		this.bind();
 
 		document.getElementById(deimos.Config.ui.login.formDomId).onsubmit = this.onLogin.bind(this) ;
 		document.getElementById(deimos.Config.ui.chooseAvatar.formDomId).onsubmit = this.onAvatarChoosed.bind(this) ;
@@ -138,20 +131,38 @@
 	}
 
 	deimos.render.UI.prototype = {
+		bind: function() {
+			EventManager.register('org.dbyzero.deimos.network.logged',this.logged.bind(this)) ;
+			EventManager.register('org.dbyzero.deimos.network.connected',this.connected.bind(this)) ;
+			EventManager.register('org.dbyzero.deimos.network.disconnected',this.disconnected.bind(this)) ;
+			EventManager.register('org.dbyzero.deimos.network.loggout',this.loggout.bind(this)) ;
+
+			EventManager.register('org.dbyzero.deimos.console.write',this.addmessage.bind(this)) ;
+			EventManager.register('org.dbyzero.deimos.console.writeError',this.addmessageError.bind(this)) ;
+			EventManager.register('org.dbyzero.deimos.network.avatar_selected',this.avatarSelected) ;
+		},
+
+		unbind : function(e) {
+			EventManager.unregister('org.dbyzero.deimos.network.logged');
+			EventManager.unregister('org.dbyzero.deimos.network.connected');
+			EventManager.unregister('org.dbyzero.deimos.network.disconnected');
+			EventManager.unregister('org.dbyzero.deimos.network.loggout');
+			EventManager.unregister('org.dbyzero.deimos.console.write');
+			EventManager.unregister('org.dbyzero.deimos.console.writeError');
+			EventManager.unregister('org.dbyzero.deimos.network.avatar_selected');
+		},
 		//show we are connected on UI
 		connected : function(e) {
 			document.getElementById(deimos.Config.ui.indication.serverStatus).style.backgroundColor = 'green' ;
 			EventManager.fire("org.dbyzero.deimos.console.write",{"detail":{"message":"Connected"}});
 		},
-		
-		
+
 		//show we are disconnected on UI
 		disconnected : function(e) {
 			document.getElementById(deimos.Config.ui.indication.serverStatus).style.backgroundColor = 'red' ;
 			this.loggout();
 		},
-		
-		
+
 		//add a message to ui log
 		addmessage : function(e) {
 			var msgZone = document.getElementById(deimos.Config.ui.chatDomId) ;
@@ -161,8 +172,7 @@
 				msgZone.appendChild(dom_elem) ;
 			this.cropConsoleRow(this.maxConsoleRow) ;
 		},
-		
-		
+
 		//add error message on ui
 		addmessageError : function(e) {
 			var msgZone = document.getElementById(deimos.Config.ui.chatDomId) ;
@@ -179,7 +189,6 @@
 				msgZone.appendChild(dom_elem) ;
 			this.cropConsoleRow(this.maxConsoleRow) ;
 		},
-
 
 		//clear what I cannot see
 		cropConsoleRow : function(max) {
@@ -228,47 +237,23 @@
 
 		//show we are logout
 		loggout : function(e) {
-			document.getElementById(deimos.Config.ui.indication.connectionStatus).style.backgroundColor = 'red' ;
-			document.getElementById(deimos.Config.ui.login.sectionDomId).style.display = 'block' ;
-			document.getElementById(deimos.Config.ui.disconnectDomId).style.display = 'none' ;
-			document.getElementById(deimos.Config.ui.chooseAvatar.sectionDomId).style.display = 'none' ;
-			document.getElementById(deimos.Config.ui.indication.lag).innerHTML = 'n/a' ;
-			document.getElementById(deimos.Config.ui.indication.fps).innerHTML = 'n/a' ;
-			document.getElementById(deimos.Config.ui.chooseAvatar.avatarListDomId).innerHTML = '' ;
+			console.log('Clean UI');
+			if(document.getElementById(deimos.Config.ui.indication.connectionStatus)) document.getElementById(deimos.Config.ui.indication.connectionStatus).style.backgroundColor = 'red' ;
+			if(document.getElementById(deimos.Config.ui.login.sectionDomId)) document.getElementById(deimos.Config.ui.login.sectionDomId).style.display = 'block' ;
+			if(document.getElementById(deimos.Config.ui.disconnectDomId)) document.getElementById(deimos.Config.ui.disconnectDomId).style.display = 'none' ;
+			if(document.getElementById(deimos.Config.ui.chooseAvatar.sectionDomId)) document.getElementById(deimos.Config.ui.chooseAvatar.sectionDomId).style.display = 'none' ;
+			if(document.getElementById(deimos.Config.ui.indication.lag)) document.getElementById(deimos.Config.ui.indication.lag).innerHTML = 'n/a' ;
+			if(document.getElementById(deimos.Config.ui.indication.fps)) document.getElementById(deimos.Config.ui.indication.fps).innerHTML = 'n/a' ;
+			if(document.getElementById(deimos.Config.ui.chooseAvatar.avatarListDomId)) document.getElementById(deimos.Config.ui.chooseAvatar.avatarListDomId).innerHTML = '' ;
+
+			var main = document.getElementById('org.dbyzero.deimos.gamePopup.main');
+			if(main) main.parentNode.removeChild(main);
+
+			var messageArea = document.getElementById('org.dbyzero.deimos.messageArea');
+			if(main) messageArea.parentNode.removeChild(messageArea);
+
+			this.unbind();
 			EventManager.fire("org.dbyzero.deimos.console.write",{"detail":{"message":"Disconnected"}});
-
-			//clean session
-			delete deimos.Engine.wsClient.session_id ;
-
-			//clean avatar
-			if(!!deimos.Engine.avatar) {
-				deimos.Engine.avatar.cleanDom();
-				delete deimos.Engine.avatar;
-			}
-
-			//clean other avatar
-			for(var avatar in deimos.Engine.scene.avatars) {
-				deimos.Engine.scene.avatars[avatar].cleanDom();
-				delete deimos.Engine.scene.avatars[avatar];
-			}
-
-			//clean other projectile
-			for(var projectile in deimos.Engine.scene.projectiles) {
-				deimos.Engine.scene.projectiles[projectile].cleanDom();
-				delete deimos.Engine.scene.projectiles[projectile];
-			}
-
-			//clean other items
-			for(var item in deimos.Engine.scene.items) {
-				deimos.Engine.scene.items[item].cleanDom();
-				delete deimos.Engine.scene.items[item];
-			}
-
-			//clean other monsters
-			for(var monster in deimos.Engine.scene.monsters) {
-				deimos.Engine.scene.monsters[monster].cleanDom();
-				delete deimos.Engine.scene.monsters[monster];
-			}
 		},
 
 		onLogout : function(event){

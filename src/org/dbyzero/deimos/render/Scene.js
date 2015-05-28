@@ -27,6 +27,34 @@ org.dbyzero = org.dbyzero || {} ;
 		this.addListener();
 	}
 
+	deimos.render.Scene.prototype.destroy = function() {
+
+		//clean avatars
+		for(var av_id in deimos.Engine.scene.avatars) {
+			this.avatars[av_id].destroy();
+		}
+
+		//clean items
+		for(var item_id in deimos.Engine.scene.items) {
+			this.items[item_id].cleanDom();
+			delete this.items[item_id];
+		}
+
+		//clean items
+		for(var monster_id in this.monsters) {
+			this.monsters[monster_id].cleanDom();
+			delete this.monsters[monster_id];
+		}
+
+		//clean items
+		for(var projectile_id in this.projectiles) {
+			this.projectiles[projectile_id].cleanDom();
+			delete this.projectiles[projectile_id];
+		}
+
+		this.removeListener();
+	}
+
 	deimos.render.Scene.prototype.parseData = function(data) {
 		if(!deimos.Engine.running) return false;
 		var _t = deimos.Engine._t;

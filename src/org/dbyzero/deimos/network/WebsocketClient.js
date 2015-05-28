@@ -56,6 +56,14 @@
 			this.connection = connection ;
 		},
 
+		close : function () {
+			// if user is running mozilla then use it's built-in WebSocket
+			window.WebSocket = window.WebSocket || window.MozWebSocket;
+
+			this.connection.close() ;
+			delete this.connection ;
+		},
+
 		/***
 		 * Send Message Method
 		 *
@@ -115,6 +123,8 @@
 		onerror: function (error) {
 			EventManager.fire("org.dbyzero.deimos.console.write",{"detail":{"message":"An error accured with the server"}});
 			EventManager.fire("org.dbyzero.deimos.network.disconnected");
+			this.session_id = null ;
+			this.tryRelog() ;
 		},
 		onmessage: function (message) {
 			var json_msg = JSON.parse(message.data) ;

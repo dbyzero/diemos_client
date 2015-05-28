@@ -43,8 +43,7 @@ gulp.task('build:js', function() {
             "src/org/dbyzero/tools/Physics.js",
             "src/org/dbyzero/deimos/physic/UserMovement.js",
             "src/org/dbyzero/deimos/physic/Gravity.js",
-            "src/org/dbyzero/deimos/analyser/Manual.js",
-            "src/app.js"
+            "src/org/dbyzero/deimos/analyser/Manual.js"
         ])
         .pipe(sourcemaps.init())
         .pipe(concat('deimos.js'))

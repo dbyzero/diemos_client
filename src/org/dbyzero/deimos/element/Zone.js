@@ -24,6 +24,7 @@
 		this.height = height;
 		this.name = name ;
 		this.blocks = [] ;
+		this.domBlocks = [] ;
 		var keys = Object.keys(blocks);
 		for (var i = 0; i < keys.length; i++) {
 			var block = blocks[keys[i]];
@@ -41,6 +42,7 @@
 			var block = new deimos.element.Block(position,size,type) ;
 			this.addBlock(block) ;
 		},
+
 		addBlock : function(block) {
 			var domBlock = document.createElement('div');
 			domBlock.style.position = 'absolute';
@@ -52,7 +54,20 @@
 			domBlock.style.backgroundColor = 'rgb(186, 186, 186)';
 			this.area.appendChild(domBlock);
 			this.blocks.push(block) ;
+			this.domBlocks.push(domBlock) ;
 		},
+
+		destroy : function(block) {
+			console.log('destroying zone');
+			var keys = Object.keys(this.domBlocks);
+			for (var i = 0; i < keys.length; i++) {
+				var domBlock = this.domBlocks[keys[i]];
+				var parentNode = domBlock.parentNode;
+				if(parentNode) parentNode.removeChild(domBlock);
+			};
+			delete this.blocks;
+			delete this.domBlocks;
+		}
 	}
 
 })(org.dbyzero.deimos, document);
