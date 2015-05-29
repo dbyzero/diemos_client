@@ -258,7 +258,6 @@
 		EventManager.unregister('org.dbyzero.deimos.network.connected');
 		EventManager.unregister('org.dbyzero.deimos.network.disconnected');
 		EventManager.unregister('org.dbyzero.deimos.network.loggout');
-		EventManager.unregister('org.dbyzero.deimos.render.parseScene');
 		EventManager.unregister('org.dbyzero.deimos.network.logged') ;
 	}
 
@@ -270,7 +269,6 @@
 		});
 
 		EventManager.register('org.dbyzero.deimos.network.gameStarted',deimos.Engine.startGame);
-		EventManager.register('org.dbyzero.deimos.render.parseScene',deimos.Engine.scene.parseData.bind(deimos.Engine.scene));
 
 		EventManager.register('org.dbyzero.deimos.network.disconnected',deimos.Engine.stop);
 		EventManager.register('org.dbyzero.deimos.network.loggout',deimos.Engine.stop);

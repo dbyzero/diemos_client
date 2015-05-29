@@ -126,8 +126,6 @@
 
 		//focus on login
 		document.getElementById(deimos.Config.ui.login.inputLoginDomId).focus();
-
-		_t = deimos.Engine._t;
 	}
 
 	deimos.render.UI.prototype = {

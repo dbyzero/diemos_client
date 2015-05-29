@@ -219,6 +219,7 @@ org.dbyzero = org.dbyzero || {} ;
 		EventManager.register('org.dbyzero.deimos.network.syncProjectile',this.syncProjectile.bind(this)) ;
 		EventManager.register('org.dbyzero.deimos.network.syncAttackZone',this.syncAttackZone.bind(this)) ;
 		EventManager.register('org.dbyzero.deimos.network.itemGrabbed',this.itemGrabbed.bind(this)) ;
+		EventManager.register('org.dbyzero.deimos.render.parseScene',this.parseData.bind(this));
 	}
 
 	deimos.render.Scene.prototype.removeListener = function() {
@@ -229,6 +230,7 @@ org.dbyzero = org.dbyzero || {} ;
 		EventManager.unregister('org.dbyzero.deimos.network.syncProjectile') ;
 		EventManager.unregister('org.dbyzero.deimos.network.syncAttackZone') ;
 		EventManager.unregister('org.dbyzero.deimos.network.itemGrabbed') ;
+		EventManager.unregister('org.dbyzero.deimos.render.parseScene') ;
 	}
 
 	deimos.render.Scene.prototype.addItem = function(item) {
