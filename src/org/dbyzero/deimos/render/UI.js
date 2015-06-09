@@ -119,6 +119,14 @@
 			// document.getElementById(deimos.Config.ui.disconnectDomId).onclick = null ;
 		},
 
+		loggout : function() {
+			this.unbind();
+			var mainDom = document.getElementById('org.dbyzero.deimos.gamePopup.main');
+			var messageDom = document.getElementById('org.dbyzero.deimos.gamePopup.message');
+			mainDom.parentNode.removeChild(mainDom);
+			messageDom.parentNode.removeChild(messageDom);
+		},
+
 		//add a message to ui log
 		addmessage : function(e) {
 			var msgZone = document.getElementById(deimos.Config.ui.chatDomId) ;
