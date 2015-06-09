@@ -59,7 +59,7 @@
 
 
 			//setting websocket server
-			deimos.Engine.wsUrl = config.serverUrl;
+			deimos.Engine.wsUrl = config.serverURL;
 			deimos.Engine.wsPort = config.serverPort ;
 			deimos.Engine.wsClient = new deimos.network.WebsocketClient(deimos.Engine.wsUrl,deimos.Engine.wsPort,deimos.Engine.mode);
 
@@ -68,7 +68,14 @@
 
 			bindEngineEvent();
 
+			//login by token
 			deimos.Engine.wsClient.connect() ;
+			deimos.Engine.wsClient.session_id = config.sessionId;
+			var _t = deimos.Engine._t;
+			var message = {};
+			message[_t['ACTION']] = _t['AUTH_BY_TOKEN'];
+			message[_t['MESSAGE']] = {};
+			deimos.Engine.networkManager.sendMessage(message);
 		},
 
 		stop: function (){
@@ -230,7 +237,7 @@
 			deimos.Engine.avatar.oriented = oriented;
 			deimos.Engine.avatar.skin = skin;
 			deimos.Engine.avatar.init();
-			bindGameEventKey() ;
+			bindGameEventKey();
 
 			//starting
 			deimos.Engine.running = true;
@@ -249,16 +256,38 @@
 			} else {
 				callback(deimos.Engine.itemTemplates[itemId]);
 			}
+		},
+
+		onAvatarSelected : function(avatar) {
+			var _t = deimos.Engine._t;
+			var e = {} ;
+			e[_t.ACTION] = _t.ACTION_CHOOSE_CHAR;
+			e[_t.MESSAGE] = {};
+			e[_t.MESSAGE][_t.MESSAGE_CHAR] = avatar;
+			deimos.Engine.networkManager.sendMessage(e);
+		},
+
+		//avatar is selected and confirmed by the backend
+		avatarSelectionConfirmed: function(e) {
+			var _t = deimos.Engine._t;
+			if(!!e[_t.MESSAGE][_t.MESSAGE_CHAR][_t.MESSAGE_ELEMENT_ID]) {
+				document.getElementById(deimos.Config.ui.chooseAvatar.sectionDomId).style.display = 'none' ;
+				EventManager.fire("org.dbyzero.deimos.engine.gameStarted",e);
+			} else {
+				EventManager.fire("org.dbyzero.deimos.console.write",{"detail":{"message":"Avatar has no id "}});
+			}
 		}
 	}
 
 	//private function
 	var unbindEngineEvent = function(){
-		EventManager.unregister('org.dbyzero.deimos.network.gameStarted');
+		EventManager.unregister('org.dbyzero.deimos.engine.gameStarted');
 		EventManager.unregister('org.dbyzero.deimos.network.connected');
 		EventManager.unregister('org.dbyzero.deimos.network.disconnected');
 		EventManager.unregister('org.dbyzero.deimos.network.loggout');
 		EventManager.unregister('org.dbyzero.deimos.network.logged') ;
+		EventManager.unregister('org.dbyzero.deimos.ui.avatarSelected') ;
+		EventManager.unregister('org.dbyzero.deimos.network.avatarSelectionConfirmed') ;
 	}
 
 
@@ -268,12 +297,16 @@
 			// deimos.Engine.loop.start(deimos.Engine.update.bind(deimos.Engine)) ;
 		});
 
-		EventManager.register('org.dbyzero.deimos.network.gameStarted',deimos.Engine.startGame);
+		EventManager.register('org.dbyzero.deimos.engine.gameStarted',deimos.Engine.startGame);
 
 		EventManager.register('org.dbyzero.deimos.network.disconnected',deimos.Engine.stop);
 		EventManager.register('org.dbyzero.deimos.network.loggout',deimos.Engine.stop);
 
 		EventManager.register('org.dbyzero.deimos.network.logged',deimos.Engine.initGameArea) ;
+
+
+		EventManager.register('org.dbyzero.deimos.ui.avatarSelected',deimos.Engine.onAvatarSelected) ;
+		EventManager.register('org.dbyzero.deimos.network.avatarSelectionConfirmed',deimos.Engine.avatarSelectionConfirmed) ;
 	}
 
 

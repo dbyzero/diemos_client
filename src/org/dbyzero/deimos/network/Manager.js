@@ -49,7 +49,7 @@ org.dbyzero.deimos = org.dbyzero.deimos || {} ;
 					EventManager.fire('org.dbyzero.deimos.network.logged',e);
 					break ;
 				case _t.ACTION_CHOOSE_CHAR_OK :
-					EventManager.fire("org.dbyzero.deimos.network.avatar_selected",e);
+					EventManager.fire("org.dbyzero.deimos.network.avatarSelectionConfirmed",e);
 					break ;
 				case _t.ACTION_ERROR :
 					EventManager.fire("org.dbyzero.deimos.console.writeError",{"detail":{"message":"Error : "+JSON.stringify(e[_t.MESSAGE])}});
