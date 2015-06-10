@@ -80,11 +80,14 @@
 
 		stop: function (){
 			//do nothing if already stopped
-			if(deimos.Engine.running === false) return;
+			// if(deimos.Engine.running === false) return;
 
 			deimos.Engine.running = false;
-			unbindGameEventKey() ;
-			deimos.Engine.loop.stop() ;
+			unbindGameEventKey();
+			unbindEngineEvent();
+
+			if(deimos.Engine.loop)
+				deimos.Engine.loop.stop() ;
 
 			if(deimos.Engine.avatar)
 				deimos.Engine.avatar.cleanDom();
