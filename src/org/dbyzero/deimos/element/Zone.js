@@ -18,7 +18,7 @@
 	 * @param domId document id of the gamezone, where the action append !
 	 *
 	 * */
-	deimos.element.Zone = function(name, domId, width, height, blocks) {
+	deimos.element.Zone = function(domId, name, width, height, blocks) {
 		this.area = document.getElementById(domId) ;
 		this.width = width;
 		this.height = height;

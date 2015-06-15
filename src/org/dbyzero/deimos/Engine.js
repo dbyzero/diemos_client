@@ -30,6 +30,9 @@
 		start : function (config){
 			deimos.Engine.running = false;
 
+			//Dom element Id where the game append 
+			deimos.Engine.domId = config.domId;
+
 			//making UI
 			deimos.Engine.ui = new deimos.render.UI() ;
 			deimos.Engine.lastUpdate = null;
@@ -167,8 +170,8 @@
 		initGameArea: function(e) {
 			var _t = deimos.Engine._t;
 			deimos.Engine.zone = new deimos.element.Zone(
+				deimos.Engine.domId,
 				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_NAME],
-				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_DOM_ID],
 				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_WIDTH],
 				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_HEIGHT],
 				e[_t.MESSAGE][_t.MESSAGE_GAME_AREA_BLOCKS]
