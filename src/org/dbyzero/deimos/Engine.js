@@ -28,6 +28,9 @@
 	deimos.Engine = {
 		running : false,
 		start : function (config){
+			//keep config for futur usage
+			deimos.Engine.config = config;
+
 			deimos.Engine.running = false;
 
 			//Dom element Id where the game append 
@@ -74,11 +77,28 @@
 			//login by token
 			deimos.Engine.wsClient.connect() ;
 			deimos.Engine.wsClient.session_id = config.sessionId;
-			var _t = deimos.Engine._t;
-			var message = {};
-			message[_t['ACTION']] = _t['AUTH_BY_TOKEN'];
-			message[_t['MESSAGE']] = {};
-			deimos.Engine.networkManager.sendMessage(message);
+
+			EventManager.register("org.dbyzero.deimos.network.connected",function(){
+				var _t = deimos.Engine._t;
+				var message = {};
+				message[_t['ACTION']] = _t['AUTH_BY_TOKEN'];
+				message[_t['MESSAGE']] = {};
+				deimos.Engine.networkManager.sendMessage(message);
+				//unbind event
+				EventManager.unregister("org.dbyzero.deimos.network.connected");
+			}.bind(this));
+
+			EventManager.register("org.dbyzero.deimos.network.connected",function(){
+				this.initGameArea();
+				onAvatarSelected.call(this,config.avatarId);
+				var _t = deimos.Engine._t;
+				var e = {} ;
+				e[_t.ACTION] = _t.ACTION_CHOOSE_CHAR;
+				e[_t.MESSAGE] = {};
+				e[_t.MESSAGE][_t.MESSAGE_CHAR] = config.avatarId;
+				deimos.Engine.networkManager.sendMessage(e);
+				EventManager.unregister("org.dbyzero.deimos.network.connected");
+			}.bind(this));
 		},
 
 		stop: function (){

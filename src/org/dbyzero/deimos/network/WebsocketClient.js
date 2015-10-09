@@ -39,7 +39,7 @@
 		 * @return void
 		 *
 		 **/
-		connect : function () {
+		connect : function (callback) {
 			// if user is running mozilla then use it's built-in WebSocket
 			window.WebSocket = window.WebSocket || window.MozWebSocket;
 
@@ -95,7 +95,7 @@
 					
 					clearInterval(setintercalId) ;
 				}
-			} ;
+			};
 			var setintercalId = setInterval(relog.bind(this),1000) ;
 		},
 		onopen: function (e) {

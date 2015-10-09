@@ -131,11 +131,18 @@ org.dbyzero.deimos = org.dbyzero.deimos || {} ;
 			var data = {};
 			data.message = e;
 
-			//putting it at the end of the queue
-			setTimeout(function(){ 
-				if(deimos.Engine.wsClient === undefined) return;
-				deimos.Engine.wsClient.send(data)
-			}, 0);
+			if(deimos.Engine.wsClient === undefined) {
+				throw new Error('Connection not ready');
+			}
+
+			// if(deimos.Engine.wsClient.readyState === WebSocket.CONNECTING) {
+				// deimos.Engine.wsClient.onOpen = function() {
+					console.log(deimos.Engine.wsClient);
+					deimos.Engine.wsClient.send(data)
+			// 	}
+			// } else {
+			// 	deimos.Engine.wsClient.send(data)
+			// }
 		},
 
 

@@ -138,7 +138,7 @@ org.dbyzero = org.dbyzero || {} ;
 	}
 	
 	//@return total periode integrated
-	deimos.render.Scene.prototype.update = function(dt,now) {
+	deimos.render.Scene.prototype.update = function(dt, now) {
 		if(!!this.dataToParse) {
 			var _t = deimos.Engine._t;
 			var data = {};
